@@ -1,4 +1,5 @@
 <?php
+require_once '../../verifica_login.php';
 require_once '../../Modelo/DAO/MetodoinnerJoin.php';
 require_once '../../Modelo/DAO/MetodoCurso.php';
 
@@ -83,6 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id_curso'])) {
         <a href="../curso/pesquisarcurso.php" class="menu-link">Pesquisar</a>
 
         <a href="../join/listarjoin.php" class="menu-link mt-3">Alunos x Cursos</a>
+
+        <a href="../../logout.php" onclick="return confirm('Tem certeza que deseja sair?');" class="menu-link mt-5 text-danger border-top border-secondary pt-3"><strong>Sair</strong></a>
 
     </div>
 </div>

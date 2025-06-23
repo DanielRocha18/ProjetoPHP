@@ -1,6 +1,11 @@
 <?php
+require_once '../../verifica_login.php';
 require_once '../../Modelo/DAO/MetodoAluno.php';
 require_once '../../Controle/ControleAluno.php';
+require_once '../../Modelo/DAO/MetodoCurso.php';
+
+$cursosDAO = new MetodosCurso();
+$cursos = $cursosDAO->pesquisarTudo();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $aluno = new ControleAluno();
@@ -83,6 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <a href="../join/listarjoin.php" class="menu-link mt-3">Alunos x Cursos</a>
 
+        <a href="../../logout.php" onclick="return confirm('Tem certeza que deseja sair?');" class="menu-link mt-5 text-danger border-top border-secondary pt-3"><strong>Sair</strong></a>
+
     </div>
 </div>
 
@@ -103,8 +110,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" class="form-control" name="semestre" required>
         </div>
         <div class="mb-3">
-            <label for="curso" class="form-label">Nome do Curso</label>
-            <input type="text" class="form-control" name="curso" required>
+ <label for="curso" class="form-label">Curso</label>
+            <select class="form-select" name="curso" required>
+                <option value="">Selecione um curso</option>
+                <?php foreach ($cursos as $curso): ?>
+                    <option value="<?= $curso->getIdCurso() ?>">
+                        <?= htmlspecialchars($curso->getNomeCurso()) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Alterar</button>
     </form>

@@ -1,3 +1,4 @@
+<?php require_once '../modelo/verifica_login.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,19 +31,17 @@
 
 <body>
 
-    <!-- Navbar superior -->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
                 ☰ Menu
             </button>
             <span class="navbar-text text-white">
-                Sistema de Gerenciamento
+                Bem-vindo(a), <?php echo $_SESSION['usuario_logado']; ?>
             </span>
         </div>
     </nav>
 
-    <!-- Menu lateral (offcanvas) -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">Menu</h5>
@@ -64,12 +63,12 @@
             <a href="Visao/curso/deletarcurso.php" class="menu-link">Excluir</a>
             <a href="Visao/curso/pesquisarcurso.php" class="menu-link">Pesquisar</a>
 
-            <a href="Visao/join/listarjoin.php" class="menu-link mt-3">📑 Alunos x Cursos</a>
-
+            <a href="Visao/join/listarjoin.php" class="menu-link mt-3">Alunos x Cursos</a>
+            
+            <a href="logout.php" onclick="return confirm('Tem certeza que deseja sair?');" class="menu-link mt-5 text-danger border-top border-secondary pt-3"><strong>Sair</strong></a>
         </div>
     </div>
 
-    <!-- Conteúdo principal -->
     <div class="container mt-4">
         <h1>Bem-vindo ao Sistema!</h1>
         <p>Use o menu lateral para navegar entre as opções.</p>
